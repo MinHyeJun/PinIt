@@ -1,5 +1,6 @@
 package com.diary.lionem.pinit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //툴바 설정
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Pin It!");
         //toolbar.setNavigationIcon(R.mipmap.pinit_icon); //제목앞에 아이콘 넣기
 
         //구글맵
@@ -67,12 +69,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
-    //추가된 소스, ToolBar에 menu.xml을 인플레이트함
+    //추가된 소스, ToolBar에 menu_main.xml을 인플레이트함
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //return super.onCreateOptionsMenu(menu);
+        //return super.onCreateOptionsMenu(menu_main);
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
+        menuInflater.inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -83,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         switch (item.getItemId()) {
             case R.id.action_title_list:
                 Toast.makeText(getApplicationContext(), "여행 리스트 버튼 클릭됨", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, ListTitleActivity.class);
+                startActivity(intent);
                 return true;
 
             case R.id.action_setting:
